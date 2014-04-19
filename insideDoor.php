@@ -1,17 +1,15 @@
 <?php
 
-class insideDoor {
+namespace Doors;
 
-    private $doorIsClosed;
-    private $doorIsLocked;
+class insideDoor extends theDoor {
 
-    public function __toString() {
-        return json_encode(array($this->doorIsClosed, $this->doorIsLocked));
+    public function __construct($doorIsClosed = true) {
+        $this->doorIsClosed = $doorIsClosed;
     }
 
-    public function __construct($doorIsClosed = true, $doorIsLocked = false) {
-        $this->doorIsClosed = $doorIsClosed;
-        $this->doorIsLocked = $doorIsLocked;
+    public function __toString() {
+        return json_encode(array($this->doorIsClosed));
     }
 
     public function openTheDoor() {
@@ -30,28 +28,8 @@ class insideDoor {
         }
     }
 
-    public function lockTheDoor() {
-        if (!$this->checkTheLock()) {
-            $this->doorIsLocked = true;
-        }  else {
-            return false;
-        }
-    }
-
-    public function unlockTheDoor() {
-        if ($this->checkTheLock()) {
-            $this->doorIsLocked = false;
-        }  else {
-            return false;
-        }
-    }
-
-    private function checkTheDoor() {
+    protected function checkTheDoor() {
         return $this->doorIsClosed;
-    }
-
-    private function checkTheLock() {
-        return $this->doorIsLocked;
     }
 
 }

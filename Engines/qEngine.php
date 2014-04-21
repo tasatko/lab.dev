@@ -1,6 +1,9 @@
 <?php
 
+namespace Engines;
+
 class qEngine {
+
     private $statusOn = "false";
     private $clockWise = "true";
     
